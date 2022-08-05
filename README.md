@@ -1,34 +1,70 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center">Groscan</h1></br>
 
-## Getting Started
+<p align="center">
+:plate_with_cutlery:  A JAM stack PWA, grocery management hybrid app built with Capacitorjs, React, TypeScript, Next.js, Prisma and MongoDB. :cocktail:
+</p>
+<br>
 
-First, run the development server:
+<p align="center">
+  <a href="#"><img alt="built with love" src="https://forthebadge.com/images/badges/built-with-love.svg"/></a>
+  <a href="#"><img alt="js Badge" src="https://forthebadge.com/images/badges/made-with-typescript.svg"/></a>
+  <a href="https://github.com/k4u5h4L"><img alt="k4u5h4L GitHub badge" height="37" src="https://badgen.net/badge/GitHub/k4u5h4L?icon=github&color=24292e"/></a>
+  <a href="#"><img alt="machine Badge" height="37" src="https://forthebadge.com/images/badges/works-on-my-machine.svg"/></a>
+  <a href="#"><img alt="not bug but feature" height="37" src="https://forthebadge.com/images/badges/not-a-bug-a-feature.svg"/></a>
+  <a href="#"><img alt="spaghetti Badge" src="https://forthebadge.com/images/badges/contains-tasty-spaghetti-code.svg"/></a>
+</p>
 
-```bash
-npm run dev
-# or
+<br>
+<!-- <p align="center">
+<img width="460px" src="assets/logo.png" alt="amma's recipe"></img>
+</p><br> -->
+
+## Technologies used:
+
+-   React as the UI library.
+
+-   Next.js as the React framework SSG and ISR.
+
+-   REST as the API language.
+
+-   MongoDB as the DB.
+
+-   Prisma as the ODM.
+
+-   NextAuth as the authentication backend with passwordless logins.
+
+## Prerequisites:
+
+-   Node.js and yarn installed.
+
+-   MongoDB installed and the daemon running locally or hosted on the cloud.
+
+## To run:
+
+-   Clone and cd into the repo.
+
+```
+git clone https://github.com/k4u5h4L/Groscan.git && cd Groscan
+```
+
+-   Install the dependencies
+
+```
+yarn install
+```
+
+-   Create a new file called `.env.local` and fill in variables and keys from different providers from the `.env.example` file.
+
+-   Now with all the API keys and the backend server running, run development server for the client.
+
+```
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+-   Now visit the location [localhost:3000](http://localhost:3000) to check out the site!
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Note:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+-   This project is for learning purposes only, and not for commercial use.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+-   Any contribution is welcome. You may fork the repo and issue a PR.

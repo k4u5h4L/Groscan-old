@@ -1,20 +1,61 @@
 {
-  "name": "groscan",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "next": "12.2.4",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
-  },
-  "devDependencies": {
-    "eslint": "8.21.0",
-    "eslint-config-next": "12.2.4"
-  }
+    "name": "groscan",
+    "version": "0.1.0",
+    "private": true,
+    "description": "A JAM stack PWA, grocery management web app built with React, TypeScript, Next.js, Prisma and MongoDB.",
+    "keywords": [
+        "grocery",
+        "PWA",
+        "React",
+        "TypeScript",
+        "Next.js",
+        "next-auth"
+    ],
+    "author": "Kaushal",
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "export": "next build && next export",
+        "sync": "npx cap sync",
+        "vercel-build": "prisma generate && next build",
+        "migrate:deploy": "prisma migrate deploy",
+        "migrate:prisma": "prisma migrate dev --preview-feature",
+        "dbpush:prisma": "prisma db push",
+        "generate:prisma": "prisma generate",
+        "introspect:prisma": "prisma introspect",
+        "studio:prisma": "prisma studio",
+        "format:prisma": "prisma format"
+    },
+    "dependencies": {
+        "@capacitor/android": "^4.0.1",
+        "@capacitor/core": "^4.0.1",
+        "@capacitor/ios": "^4.0.1",
+        "@prisma/client": "^4.1.1",
+        "cors": "^2.8.5",
+        "next": "12.2.4",
+        "next-auth": "^4.10.3",
+        "nextjs-progressbar": "^0.0.14",
+        "react": "18.2.0",
+        "react-dom": "18.2.0",
+        "xss": "^1.0.13"
+    },
+    "peerOptionalDependencies": {
+        "mongodb": "^4.8.1"
+    },
+    "devDependencies": {
+        "@capacitor/cli": "^4.0.1",
+        "@types/next-auth": "^3.15.0",
+        "@types/node": "^18.6.4",
+        "@types/react": "^18.0.15",
+        "@typescript-eslint/eslint-plugin": "^5.32.0",
+        "@typescript-eslint/parser": "^5.32.0",
+        "eslint": "8.21.0",
+        "eslint-config-next": "12.2.4",
+        "eslint-plugin-react": "^7.30.1",
+        "prettier": "^2.7.1",
+        "prisma": "^4.1.1",
+        "typescript": "^4.7.4"
+    }
 }
