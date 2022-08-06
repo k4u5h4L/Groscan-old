@@ -24,6 +24,7 @@
             "@/databases/*": ["databases/*"],
             "@/helpers/*": ["helpers/*"],
             "@/prisma/*": ["prisma/*"],
+            "@/styles/*": ["styles/*"],
             "@/node_modules/*": ["node_modules/*"]
         },
         "incremental": true

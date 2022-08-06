@@ -1,4 +1,5 @@
 import { BarcodeScanner } from "@capacitor-community/barcode-scanner";
+import { useEffect } from "react";
 
 export default function Home() {
     const startScan = async () => {
@@ -23,9 +24,27 @@ export default function Home() {
         }
     };
 
+    useEffect(() => {
+        startScan();
+    });
+
     return (
-        <div>
-            <button onClick={() => startScan()}>Click here to scan</button>
-        </div>
+        <>
+            <div className="sample-background">
+                {/* Scanner will come here */}
+            </div>
+            <div className="container">
+                <div className="barcode-scanner--area--container">
+                    <div className="relative">
+                        <p>Aim your camera at a barcode</p>
+                    </div>
+                    <div className="square surround-cover">
+                        <div className="barcode-scanner--area--outer surround-cover">
+                            <div className="barcode-scanner--area--inner"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
     );
 }

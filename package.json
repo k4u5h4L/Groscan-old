@@ -34,6 +34,9 @@
         "format:prisma": "prisma format",
         "edit:scanner": "node editScanner.js"
     },
+    "engines": {
+        "node": "^16"
+    },
     "dependencies": {
         "@capacitor-community/barcode-scanner": "^2.1.1",
         "@capacitor/android": "^4.0.1",
