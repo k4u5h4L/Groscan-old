@@ -7,9 +7,9 @@ export default function Home() {
         if (status) {
             await BarcodeScanner.hideBackground(); // make background of WebView transparent
 
-            if (document) {
-                document.body.requestFullscreen();
-            }
+            // if (document) {
+            //     document.body.requestFullscreen();
+            // }
             // start scanning and wait for a result
             const result = await BarcodeScanner.startScan();
 

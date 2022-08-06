@@ -1,0 +1,13 @@
+diff --git a/node_modules/@capacitor-community/barcode-scanner/package.json b/node_modules/@capacitor-community/barcode-scanner/package.json
+index 4c94ff9..8104fbd 100644
+--- a/node_modules/@capacitor-community/barcode-scanner/package.json
++++ b/node_modules/@capacitor-community/barcode-scanner/package.json
+@@ -2,7 +2,7 @@
+   "name": "@capacitor-community/barcode-scanner",
+   "version": "2.1.1",
+   "description": "A fast and efficient (QR) barcode scanner for Capacitor",
+-  "main": "dist/plugin.js",
++  "main": "dist/plugin.cjs.js",
+   "module": "dist/esm/index.js",
+   "types": "dist/esm/index.d.ts",
+   "unpkg": "dist/plugin.js",
