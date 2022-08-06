@@ -10,26 +10,57 @@ export default class MyDocument extends Document {
                         integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
                         crossOrigin="anonymous"
                     />
-                    {/* <link
+
+                    <link
                         rel="stylesheet"
-                        href="/fonts/material-icon/css/material-design-iconic-font.min.css"
+                        id="rtl-link"
+                        type="text/css"
+                        href="/assets/css/vendors/bootstrap.css"
+                    />
+
+                    <link
+                        rel="stylesheet"
+                        type="text/css"
+                        href="/assets/css/iconly.css"
+                    />
+
+                    <link
+                        rel="stylesheet"
+                        type="text/css"
+                        href="/assets/css/vendors/slick.css"
                     />
                     <link
                         rel="stylesheet"
-                        href="/assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css"
+                        type="text/css"
+                        href="/assets/css/vendors/slick-theme.css"
                     />
 
-                    <link rel="stylesheet" href="/assets/css/style.min.css" />
-                    <link rel="icon" type="image/png" href="/icon.png" /> */}
+                    <link
+                        rel="stylesheet"
+                        id="change-link"
+                        type="text/css"
+                        href="/assets/css/style.css"
+                    />
                 </Head>
                 <body>
                     <Main />
                     <NextScript />
 
-                    {/* <script
-                        src="/assets/vendor/jquery/jquery-3.5.1.min.js"
-                        type="2f67aa58bc6dff0dbcb0a602-text/javascript"
-                    ></script> */}
+                    <script src="/assets/js/jquery-3.6.0.min.js"></script>
+
+                    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+                    <script src="/assets/js/lord-icon-2.1.0.js"></script>
+
+                    <script src="/assets/js/feather.min.js"></script>
+
+                    <script src="/assets/js/slick.js"></script>
+                    <script src="/assets/js/slick.min.js"></script>
+                    <script src="/assets/js/slick-custom.js"></script>
+
+                    <script src="/assets/js/theme-setting.js"></script>
+
+                    <script src="/assets/js/script.js"></script>
                 </body>
             </Html>
         );

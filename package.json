@@ -44,20 +44,20 @@
         "@capacitor/ios": "^4.0.1",
         "@capacitor/local-notifications": "^4.0.1",
         "@capacitor/toast": "^4.0.1",
+        "@next-auth/mongodb-adapter": "^1.0.4",
         "@prisma/client": "^4.1.1",
         "cors": "^2.8.5",
         "internal-ip": "^7.0.0",
+        "mongodb": "^4.8.1",
         "next": "12.2.4",
         "next-auth": "^4.10.3",
         "nextjs-progressbar": "^0.0.14",
+        "nodemailer": "^6.7.7",
         "patch-package": "^6.4.7",
         "postinstall-postinstall": "^2.1.0",
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "xss": "^1.0.13"
-    },
-    "peerOptionalDependencies": {
-        "mongodb": "^4.8.1"
     },
     "devDependencies": {
         "@capacitor/cli": "^4.0.1",

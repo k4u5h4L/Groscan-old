@@ -5,40 +5,40 @@ import type { AppProps /*, AppContext */ } from "next/app";
 import NextNprogress from "nextjs-progressbar";
 
 import "@/styles/scanner.css";
+import { useState, useEffect } from "react";
 
 function MyApp({ Component, pageProps }: AppProps) {
-    return (
-        <SessionProvider session={pageProps.session} refetchInterval={5 * 60}>
-            <Head>
-                <meta charSet="utf-8" />
-                <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-                <meta
-                    name="viewport"
-                    content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+    const [showChild, setShowChild] = useState(false);
+    useEffect(() => {
+        setShowChild(true);
+    }, []);
+
+    if (!showChild) {
+        return null;
+    }
+    if (typeof window === "undefined") {
+        return <></>;
+    } else {
+        return (
+            <SessionProvider
+                session={pageProps.session}
+                refetchInterval={5 * 60}
+            >
+                <Head>
+                    <meta charSet="utf-8" />
+                    <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+                    <title>Groscan</title>
+                </Head>
+                <NextNprogress
+                    color="#21aa93"
+                    startPosition={0.3}
+                    stopDelayMs={200}
+                    height={3}
                 />
-                <meta name="apple-mobile-web-app-capable" content="yes" />
-                <meta content="A grocery management app" name="description" />
-                <meta content="Groscan" name="title" />
-                <meta name="theme-color" content="#ffffff" />
-                <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
-                <link
-                    rel="icon"
-                    type="shortcut icon"
-                    sizes="16x16"
-                    href="/favicon.ico"
-                />
-                {/* <link rel="manifest" href="/manifest.json" /> */}
-                <title>Groscan</title>
-            </Head>
-            <NextNprogress
-                color="#21aa93"
-                startPosition={0.3}
-                stopDelayMs={200}
-                height={3}
-            />
-            <Component {...pageProps} />
-        </SessionProvider>
-    );
+                <Component {...pageProps} />
+            </SessionProvider>
+        );
+    }
 }
 
 // Only uncomment this method if you have blocking data requirements for
