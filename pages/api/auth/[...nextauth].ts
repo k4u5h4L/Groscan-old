@@ -24,8 +24,7 @@ export default (req: NextApiRequest, res: NextApiResponse) =>
                 from: process.env.EMAIL_FROM,
             }),
         ],
-        // debug: process.env.NODE_ENV === "development",
-        debug: true,
+        debug: process.env.NODE_ENV === "development",
         secret: process.env.AUTH_SECRET,
         jwt: {
             secret: process.env.JWT_SECRET,
