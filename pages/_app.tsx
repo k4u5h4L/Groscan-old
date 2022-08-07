@@ -4,8 +4,9 @@ import type { AppProps /*, AppContext */ } from "next/app";
 
 import NextNprogress from "nextjs-progressbar";
 
+import "@/styles/global.css";
 import "@/styles/scanner.css";
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 
 function MyApp({ Component, pageProps }: AppProps) {
     // const [showChild, setShowChild] = useState(false);
