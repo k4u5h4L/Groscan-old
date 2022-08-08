@@ -3,6 +3,7 @@ import EmailProvider from "next-auth/providers/email";
 import { NextApiRequest, NextApiResponse } from "next";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import clientPromise from "@/utils/mongodbAdapter";
+import { sendVerificationRequest } from "@/utils/emailVerificationUtils";
 
 export default (req: NextApiRequest, res: NextApiResponse) =>
     NextAuth(req, res, {
@@ -22,6 +23,14 @@ export default (req: NextApiRequest, res: NextApiResponse) =>
                     },
                 },
                 from: process.env.EMAIL_FROM,
+                maxAge: 10 * 60,
+                // generate & send the OTP from here
+                generateVerificationToken: async () => {
+                    return "1234";
+                },
+                sendVerificationRequest(params) {
+                    sendVerificationRequest(params);
+                },
             }),
         ],
         debug: process.env.NODE_ENV === "development",
@@ -41,7 +50,7 @@ export default (req: NextApiRequest, res: NextApiResponse) =>
             signIn: "/login",
             signOut: "/auth/signout",
             error: "/auth/error", // Error code passed in query string as ?error=
-            verifyRequest: "/login/verify", // (used for check email message)
+            verifyRequest: "/verify", // (used for check email message)
             newUser: null, // If set, new users will be directed here on first sign in
         },
     });

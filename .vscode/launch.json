@@ -1,0 +1,9 @@
+{
+    "name": "Launch via Yarn",
+    "type": "node",
+    "request": "launch",
+    "runtimeExecutable": "yarn",
+    "cwd": "${workspaceFolder}",
+    "runtimeArgs": ["dev"],
+    "port": 3000
+}
