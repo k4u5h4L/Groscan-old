@@ -10,7 +10,7 @@ async function sendVerificationRequest(params: SendVerificationRequestParams) {
     const result = await transport.sendMail({
         to: identifier,
         from: provider.from,
-        subject: `Sign in to ${host}`,
+        subject: `Sign in to ${host} (${new Date().toUTCString()} UTC)`,
         text: text({ url, host }),
         html: html({ url, host, theme }),
     });
@@ -30,7 +30,8 @@ async function sendVerificationRequest(params: SendVerificationRequestParams) {
  */
 function html(params: { url: string; host: string; theme: Theme }) {
     const { url, host, theme } = params;
-    const otp = url;
+
+    const otp = getOtp(url);
 
     const escapedHost = host.replace(/\./g, "&#8203;.");
 
@@ -52,16 +53,25 @@ function html(params: { url: string; host: string; theme: Theme }) {
       <td align="center"
         style="padding: 10px 0px; font-size: 22px; font-family: Helvetica, Arial, sans-serif; color: ${color.text};">
         Sign in to <strong>${escapedHost}</strong>
+        <hr />
+        <p>Your OTP is:</p>
       </td>
     </tr>
     <tr>
       <td align="center" style="padding: 20px 0;">
         <table border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td align="center" style="border-radius: 5px;" bgcolor="${color.buttonBackground}"><a href="${url}"
-                target="_blank"
-                style="font-size: 18px; font-family: Helvetica, Arial, sans-serif; color: ${color.buttonText}; text-decoration: none; border-radius: 5px; padding: 10px 20px; border: 1px solid ${color.buttonBorder}; display: inline-block; font-weight: bold;">Sign
-                in</a></td>
+            <td align="center" style="border-radius: 5px;" bgcolor="${color.buttonBackground}">
+              <!-- <a href="${url}"
+                  target="_blank"
+                  style="font-size: 18px; font-family: Helvetica, Arial, sans-serif; color: ${color.buttonText}; text-decoration: none; border-radius: 5px; padding: 10px 20px; border: 1px solid ${color.buttonBorder}; display: inline-block; font-weight: bold;">Sign
+                  in
+              </a> -->
+              <a
+                  style="font-size: 18px; font-family: Helvetica, Arial, sans-serif; color: ${color.buttonText}; text-decoration: none; border-radius: 5px; padding: 10px 20px; border: 1px solid ${color.buttonBorder}; display: inline-block; font-weight: bold;">
+                  ${otp}
+              </a>
+            </td>
           </tr>
         </table>
       </td>
@@ -69,7 +79,7 @@ function html(params: { url: string; host: string; theme: Theme }) {
     <tr>
       <td align="center"
         style="padding: 0px 0px 10px 0px; font-size: 16px; line-height: 22px; font-family: Helvetica, Arial, sans-serif; color: ${color.text};">
-        If you did not request this email you can safely ignore it.
+        If you did not request this OTP you can safely ignore it.
       </td>
     </tr>
   </table>
@@ -79,7 +89,13 @@ function html(params: { url: string; host: string; theme: Theme }) {
 
 /** Email Text body (fallback for email clients that don't render HTML, e.g. feature phones) */
 function text({ url, host }: { url: string; host: string }) {
-    return `Sign in to ${host}\n${url}\n\n`;
+    return `Sign in to ${host}\nusing OTP: ${getOtp(url)}\n\n`;
 }
+
+const getOtp = (url: string): string => {
+    const urlObj = new URL(url);
+
+    return urlObj.searchParams.get("token");
+};
 
 export { sendVerificationRequest };

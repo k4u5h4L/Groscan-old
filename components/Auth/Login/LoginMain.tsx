@@ -1,8 +1,10 @@
 import { signIn, signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 import { useRef } from "react";
 
 function LoginMain() {
     const emailRef = useRef<any>();
+    const router = useRouter();
     const { data: session, status } = useSession();
 
     if (status == "loading") {
@@ -19,8 +21,10 @@ function LoginMain() {
         signIn("email", {
             email: email,
             callbackUrl: `/verify`,
-            redirect: true,
+            redirect: false,
         });
+
+        router.push(`/verify?email=${encodeURIComponent(email)}`);
     };
 
     return (

@@ -1,9 +1,18 @@
 import { signIn, signOut, useSession } from "next-auth/react";
-import { useRef } from "react";
+import { useRouter } from "next/router";
+import { useEffect, useRef } from "react";
 
 function VerifyMain() {
     const otpRef = useRef<any>();
+    const router = useRouter();
     const { data: session, status } = useSession();
+
+    // after the component gets destroyed, cler localstorage
+    useEffect(() => {
+        return () => {
+            localStorage.clear();
+        };
+    }, []);
 
     if (status == "loading") {
         return <></>;
@@ -14,7 +23,26 @@ function VerifyMain() {
 
         const otp: string = otpRef.current.value;
 
-        console.log(`Logging in email: ${otp}`);
+        const email: string = `${router.query.email}`;
+
+        if (email == "" || email == null || email == undefined) {
+            alert(
+                "There has been an error in the email you have entered. Please request OTP again."
+            );
+
+            router.replace(`/login`);
+        }
+
+        // send user to auth page with OTP
+        router.push(
+            `${
+                process.env.NEXT_PUBLIC_SERVER_URL
+            }/api/auth/callback/email?callbackUrl=%2F&token=${encodeURIComponent(
+                otp
+            )}&email=${encodeURIComponent(email)}`
+        );
+
+        console.log(`Logging in email ${email}: ${otp}`);
     };
 
     return (
@@ -46,8 +74,10 @@ function VerifyMain() {
                             {!session ? (
                                 <input
                                     type="number"
+                                    min={0}
+                                    max={9999}
                                     className="form-control bg-light"
-                                    placeholder="Enter your email"
+                                    placeholder="Enter the OTP sent to your email"
                                     ref={otpRef}
                                     required={true}
                                 />

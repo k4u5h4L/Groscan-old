@@ -4,6 +4,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import clientPromise from "@/utils/mongodbAdapter";
 import { sendVerificationRequest } from "@/utils/emailVerificationUtils";
+import otpGenerator from "otp-generator";
 
 export default (req: NextApiRequest, res: NextApiResponse) =>
     NextAuth(req, res, {
@@ -26,7 +27,12 @@ export default (req: NextApiRequest, res: NextApiResponse) =>
                 maxAge: 10 * 60,
                 // generate & send the OTP from here
                 generateVerificationToken: async () => {
-                    return "1234";
+                    return otpGenerator.generate(4, {
+                        digits: true,
+                        upperCaseAlphabets: false,
+                        lowerCaseAlphabets: false,
+                        specialChars: false,
+                    });
                 },
                 sendVerificationRequest(params) {
                     sendVerificationRequest(params);
