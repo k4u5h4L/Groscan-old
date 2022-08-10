@@ -5,6 +5,8 @@ import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import clientPromise from "@/utils/mongodbAdapter";
 import { sendVerificationRequest } from "@/utils/emailVerificationUtils";
 import otpGenerator from "otp-generator";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import prisma from "@/prisma/client";
 
 export default (req: NextApiRequest, res: NextApiResponse) =>
     NextAuth(req, res, {
@@ -45,7 +47,8 @@ export default (req: NextApiRequest, res: NextApiResponse) =>
             secret: process.env.JWT_SECRET,
         },
         // database: process.env.DATABASE_URL,
-        adapter: MongoDBAdapter(clientPromise),
+        // adapter: MongoDBAdapter(clientPromise),
+        adapter: PrismaAdapter(prisma),
         callbacks: {
             async redirect({ url, baseUrl }) {
                 return "/";

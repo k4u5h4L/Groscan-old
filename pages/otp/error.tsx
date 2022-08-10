@@ -1,5 +1,6 @@
 import Header from "@/components/Header/Header";
 import Navbar from "@/components/Navbar/Navbar";
+import Sidebar from "@/components/Sidebar/Sidebar";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -39,6 +40,7 @@ function OtpError() {
                 </p>
             </main>
             <Navbar />
+            <Sidebar />
         </>
     );
 }
