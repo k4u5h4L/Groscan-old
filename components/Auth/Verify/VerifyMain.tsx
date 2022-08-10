@@ -1,18 +1,11 @@
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
 function VerifyMain() {
     const otpRef = useRef<any>();
     const router = useRouter();
     const { data: session, status } = useSession();
-
-    // after the component gets destroyed, cler localstorage
-    useEffect(() => {
-        return () => {
-            localStorage.clear();
-        };
-    }, []);
 
     if (status == "loading") {
         return <></>;
