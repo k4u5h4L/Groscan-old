@@ -1,12 +1,8 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextApiRequest } from "next";
 import { getSession } from "next-auth/react";
 import requestIp from "request-ip";
 
-export default async function checkAuth(
-    req: NextApiRequest,
-    res: NextApiResponse,
-    next: Function
-) {
+export default async function checkAuth(req: NextApiRequest) {
     const session = await getSession({ req });
 
     if (!session) {
@@ -14,12 +10,10 @@ export default async function checkAuth(
             `User with IP ${requestIp.getClientIp(req)} is not authenticated`
         );
 
-        res.status(401).json({
-            message: "Unauthenticated. Please go to '/login' URI and sign in.",
-        });
+        return null;
     } else {
-        console.log(`User with email ${session.user.email} is authenticated`);
+        // console.log(`User with email ${session.user.email} is authenticated`);
 
-        next(req, res, session);
+        return session;
     }
 }
