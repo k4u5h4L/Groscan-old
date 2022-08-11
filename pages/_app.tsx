@@ -6,9 +6,12 @@ import NextNprogress from "nextjs-progressbar";
 
 import "@/styles/global.css";
 import "@/styles/scanner.css";
+import Navbar from "@/components/Common/Navbar/Navbar";
+import { useRouter } from "next/router";
 // import { useState, useEffect } from "react";
 
 function MyApp({ Component, pageProps }: AppProps) {
+    const router = useRouter();
     // const [showChild, setShowChild] = useState(false);
     // useEffect(() => {
     //     setShowChild(true);
@@ -20,6 +23,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     // if (typeof window === "undefined") {
     //     return <></>;
     // } else {
+
     return (
         <SessionProvider session={pageProps.session} refetchInterval={5 * 60}>
             <Head>
@@ -45,6 +49,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                 options={{ showSpinner: false }}
             />
             <Component {...pageProps} />
+            <Navbar route={router.asPath} />
         </SessionProvider>
     );
     // }

@@ -1,6 +1,5 @@
 import DetailHeader from "@/components/Detail/DetailHeader/DetailHeader";
 import DetailMain from "@/components/Detail/DetailMain";
-import Navbar from "@/components/Navbar/Navbar";
 import { useRouter } from "next/router";
 
 function Item() {
@@ -12,7 +11,6 @@ function Item() {
         <>
             <DetailHeader />
             <DetailMain itemId={itemId} />
-            <Navbar />
         </>
     );
 }

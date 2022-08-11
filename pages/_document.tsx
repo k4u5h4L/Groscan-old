@@ -1,4 +1,4 @@
-import Loader from "@/components/Loader/Loader";
+import Loader from "@/components/Common/Loader/Loader";
 import Document, { Html, Head, Main, NextScript } from "next/document";
 export default class MyDocument extends Document {
     render() {

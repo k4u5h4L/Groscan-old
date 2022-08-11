@@ -1,14 +1,12 @@
-import Header from "@/components/Header/Header";
+import Header from "@/components/Common/Header/Header";
 import HomeMain from "@/components/Home/HomeMain";
-import Navbar from "@/components/Navbar/Navbar";
-import Sidebar from "@/components/Sidebar/Sidebar";
+import Sidebar from "@/components/Common/Sidebar/Sidebar";
 
 export default function Home() {
     return (
         <>
             <Header />
             <HomeMain />
-            <Navbar />
             <Sidebar />
         </>
     );
