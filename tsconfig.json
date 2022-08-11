@@ -23,6 +23,8 @@
             "@/databases/*": ["databases/*"],
             "@/helpers/*": ["helpers/*"],
             "@/prisma/*": ["prisma/*"],
+            "@/middlewares/*": ["middlewares/*"],
+            "@/services/*": ["services/*"],
             "@/styles/*": ["styles/*"],
             "@/node_modules/*": ["node_modules/*"]
         },
