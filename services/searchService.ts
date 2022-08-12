@@ -8,7 +8,7 @@ export default function searchService(
 ) {
     console.log("Hit search");
 
-    res.status(200).json({
-        message: "Items",
-    });
+    const result = ["hello", "there"];
+
+    res.status(200).json(result);
 }

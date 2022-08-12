@@ -1,10 +1,13 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 type Proptype = {
     route: string;
 };
 
 function Navbar({ route }: Proptype) {
+    const router = useRouter();
+
     return (
         <>
             <nav className="nav-bottom">

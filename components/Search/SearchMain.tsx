@@ -1,3 +1,4 @@
+import { forceLower } from "@/utils/commonUtils";
 import { setPref } from "@/utils/preferencesUtils";
 import { useRouter } from "next/router";
 import { useRef, useState } from "react";
@@ -10,6 +11,7 @@ function SearchMain({ history }: PropType) {
     const router = useRouter();
     const searchRef = useRef<any>();
     const [searchHistory, setSearchHistory] = useState<string[]>(history);
+    const [focus, setFocus] = useState<boolean>(true);
 
     const removeSearchHandler = async (searchString: string): Promise<void> => {
         setSearchHistory((prev) => {
@@ -23,14 +25,24 @@ function SearchMain({ history }: PropType) {
     const handleSubmit = async () => {
         const searchString: string = searchRef.current.value;
 
-        setSearchHistory((prev) => {
-            prev.push(searchString);
-            return prev;
-        });
+        if (searchHistory.includes(searchString.toLowerCase())) {
+            setSearchHistory((prev) => {
+                prev.push(searchString.toLowerCase());
+                return prev;
+            });
 
-        await setPref("searchHistory", searchHistory);
+            await setPref("searchHistory", searchHistory);
+        }
 
         router.push(`/results?q=${encodeURIComponent(searchString)}`);
+    };
+
+    const onFocusHandler = () => {
+        setFocus(true);
+    };
+
+    const onBlurHandler = () => {
+        setFocus(false);
     };
 
     return (
@@ -46,7 +58,10 @@ function SearchMain({ history }: PropType) {
                             type="text"
                             placeholder="Search"
                             className="form-control input-dark"
+                            style={{ color: focus ? "black" : "white" }}
                             ref={searchRef}
+                            onFocus={onFocusHandler}
+                            onBlur={onBlurHandler}
                         />
                     </div>
                 </form>
@@ -83,13 +98,7 @@ function SearchMain({ history }: PropType) {
                         </ul>
                     </section>
                 ) : (
-                    <section className="p-3">
-                        <ul>
-                            <li>
-                                <a className="btn-control"></a>
-                            </li>
-                        </ul>
-                    </section>
+                    <section className="p-3"></section>
                 )}
 
                 <p className="text-center mx-3">

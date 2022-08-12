@@ -8,21 +8,24 @@ import "@/styles/global.css";
 import "@/styles/scanner.css";
 import Navbar from "@/components/Common/Navbar/Navbar";
 import { useRouter } from "next/router";
-// import { useState, useEffect } from "react";
+import { AnimatePresence, domAnimation, LazyMotion, m } from "framer-motion";
+import "normalize.css";
+import {
+    slideUp,
+    slideLeft,
+    slideRight,
+    fadeBack,
+    rotateX,
+    rotateY,
+    rotateZ,
+} from "@/helpers/animations";
 
 function MyApp({ Component, pageProps }: AppProps) {
     const router = useRouter();
-    // const [showChild, setShowChild] = useState(false);
-    // useEffect(() => {
-    //     setShowChild(true);
-    // }, []);
 
-    // if (!showChild) {
-    //     return null;
-    // }
-    // if (typeof window === "undefined") {
-    //     return <></>;
-    // } else {
+    const animation = slideLeft;
+
+    console.log(router.route);
 
     return (
         <SessionProvider session={pageProps.session} refetchInterval={5 * 60}>
@@ -42,14 +45,30 @@ function MyApp({ Component, pageProps }: AppProps) {
                 <title>Groscan</title>
             </Head>
             <NextNprogress
-                color="#ffffff"
+                color="#0d6efd"
                 startPosition={0.3}
                 stopDelayMs={200}
                 height={3}
                 options={{ showSpinner: false }}
             />
-            <Component {...pageProps} />
-            <Navbar route={router.asPath} />
+            <LazyMotion features={domAnimation}>
+                <AnimatePresence exitBeforeEnter={false}>
+                    <m.div
+                        key={router.route.concat(animation.name)}
+                        // className="page-wrap"
+                        initial="initial"
+                        animate="animate"
+                        exit="exit"
+                        variants={animation.variants}
+                        transition={animation.transition}
+                    >
+                        <>
+                            <Component {...pageProps} />
+                            <Navbar route={router.asPath} />
+                        </>
+                    </m.div>
+                </AnimatePresence>
+            </LazyMotion>
         </SessionProvider>
     );
     // }

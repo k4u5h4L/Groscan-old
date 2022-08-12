@@ -1,9 +1,22 @@
+import { fetcher } from "@/utils/fetcher";
 import { useRouter } from "next/router";
+import useSWR from "swr";
 
 function ResultsMain() {
     const router = useRouter();
 
     const searchQuery = `${router.query.q ?? "None"}`;
+
+    const { data, error } = useSWR(
+        `/api/items/search?q=${encodeURIComponent(searchQuery)}`,
+        fetcher
+    );
+
+    console.log(data);
+
+    if (error) {
+        return <>Error</>;
+    }
 
     return (
         <>

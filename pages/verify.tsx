@@ -5,7 +5,7 @@ import Sidebar from "@/components/Common/Sidebar/Sidebar";
 export default function Verify() {
     return (
         <>
-            <Header />
+            <Header title="Groscan" />
             <VerifyMain />
             <Sidebar />
         </>

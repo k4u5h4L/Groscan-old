@@ -4,4 +4,8 @@ const getUrl = (location: string) => {
     return l;
 };
 
-export { getUrl };
+const forceLower = (strInput) => {
+    strInput.value = strInput.value.toLowerCase();
+};
+
+export { getUrl, forceLower };
