@@ -21,10 +21,10 @@ function ProfileMain() {
                         />
                         <figcaption className="text text-white">
                             <p className="h5 title mb-1">
-                                {session.user.name ?? "Username"}
+                                {session?.user?.name ?? "Username"}
                             </p>
                             <p className="text-white-50 lh-sm">
-                                {session.user.email ?? "Email"}
+                                {session?.user?.email ?? "Email"}
                             </p>
                         </figcaption>
                     </figure>

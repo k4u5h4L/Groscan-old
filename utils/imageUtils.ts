@@ -1,6 +1,6 @@
-import { v2 as cloudinary } from "cloudinary";
+import { UploadApiResponse, v2 as cloudinary } from "cloudinary";
 
-const uploadImage = async (imagePath: string): Promise<any> => {
+const uploadImage = async (imagePath: string): Promise<UploadApiResponse> => {
     cloudinary.config({
         cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
         api_key: process.env.CLOUDINARY_API_KEY,
