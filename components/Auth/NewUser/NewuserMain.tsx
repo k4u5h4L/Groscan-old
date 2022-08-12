@@ -1,6 +1,6 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 function NewUserMain() {
     const router = useRouter();
@@ -8,6 +8,9 @@ function NewUserMain() {
 
     const [image, setImage] = useState(null);
     const [createObjectURL, setCreateObjectURL] = useState(null);
+
+    const usernameRef = useRef<any>();
+    const phoneRef = useRef<any>();
 
     const uploadToClient = (event) => {
         if (event.target.files && event.target.files[0]) {
@@ -18,8 +21,6 @@ function NewUserMain() {
             const reader = new FileReader();
             reader.readAsDataURL(event.target.files[0]);
             reader.onload = () => {
-                console.log("reader result", reader.result);
-
                 setCreateObjectURL(URL.createObjectURL(i));
                 setImage(
                     new File(
@@ -37,27 +38,22 @@ function NewUserMain() {
     const submitHandler = async (e: any) => {
         e.preventDefault();
 
-        console.log("image", image);
-
         const body = new FormData();
-        // console.log("file", image)
         body.append("file", image);
-        // const response = await fetch("/api/upload", {
-        //     method: "POST",
-        //     body,
-        // });
 
-        console.log(body);
+        body.append(
+            "fields",
+            JSON.stringify({
+                username: usernameRef.current.value,
+                phone: phoneRef.current.value,
+            })
+        );
 
         const res = await fetch(`/api/user/new`, {
             method: "POST",
-            // mode: "cors",
-            // cache: "no-cache",
-            // headers: {
-            //     "Content-Type": "application/json",
-            // },
-            // redirect: "follow",
-            // referrerPolicy: "no-referrer",
+            cache: "no-cache",
+            redirect: "follow",
+            referrerPolicy: "no-referrer",
             body: body,
         });
 
@@ -65,7 +61,7 @@ function NewUserMain() {
 
         console.log(data);
 
-        // router.push("/");
+        router.push("/");
     };
 
     return (
@@ -85,6 +81,8 @@ function NewUserMain() {
                                     src="/images/avatars/1.jpg"
                                     className="avatar-lg"
                                     alt=""
+                                    width={80}
+                                    height={80}
                                 />
                             </div>
                             <div className="text">
@@ -105,21 +103,23 @@ function NewUserMain() {
                             </div>
                         </div>
                         <div className="mb-3">
-                            <label className="form-label">Your username</label>
+                            <label className="form-label">Username</label>
                             <input
                                 type="text"
                                 className="form-control bg-light"
                                 placeholder="Username"
                                 required={true}
+                                ref={usernameRef}
                             />
                         </div>
                         <div className="mb-3">
                             <label className="form-label">Phone</label>
                             <input
-                                type="number"
+                                type="tel"
                                 className="form-control bg-light"
                                 placeholder="Phone"
                                 required={true}
+                                ref={phoneRef}
                             />
                         </div>
                         {/* <div className="mb-3">

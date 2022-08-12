@@ -1,4 +1,5 @@
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 function ProfileMain() {
     const { data: session, status } = useSession();
@@ -16,8 +17,13 @@ function ProfileMain() {
                     >
                         <img
                             className="icon icon-md rounded-circle"
-                            src="/images/avatars/1.jpg"
+                            src={
+                                session?.user?.image ??
+                                "/images/user-profile.svg"
+                            }
                             alt=""
+                            width={60}
+                            height={60}
                         />
                         <figcaption className="text text-white">
                             <p className="h5 title mb-1">
@@ -62,26 +68,26 @@ function ProfileMain() {
                 <hr className="divider" />
 
                 <section>
-                    <h5 className="title-section pb-2">Orders</h5>
+                    <h5 className="title-section pb-2">History</h5>
                     <nav className="nav-list">
                         <a className="btn-list" href="#">
                             <span className="float-end badge bg-warning">
                                 3
                             </span>
-                            <span className="text">On proccess</span>
+                            <span className="text">Upcoming</span>
                         </a>
                         <a className="btn-list" href="#">
                             <span className="float-end badge bg-success">
                                 1
                             </span>
-                            <span className="text">Shipped</span>
+                            <span className="text">Consumed</span>
                         </a>
                         <a className="btn-list" href="#">
                             <span className="float-end badge bg-secondary">
                                 0
                             </span>
                             <small className="title"></small>
-                            <span className="text">Unpaid</span>
+                            <span className="text">Expired</span>
                         </a>
                     </nav>
                 </section>
@@ -90,14 +96,16 @@ function ProfileMain() {
                     <h5 className="title-section pb-2">Account</h5>
 
                     <nav className="nav-list">
-                        <a className="btn-list" href="#">
-                            <i className="icon-control material-icons md-keyboard_arrow_right"></i>
-                            <span className="text">Settings</span>
-                        </a>
-                        <a className="btn-list" href="#">
+                        <Link href={"/settings"}>
+                            <a className="btn-list">
+                                <i className="icon-control material-icons md-keyboard_arrow_right"></i>
+                                <span className="text">Settings</span>
+                            </a>
+                        </Link>
+                        {/* <a className="btn-list" href="#">
                             <i className="icon-control material-icons md-keyboard_arrow_right"></i>
                             <span className="text">Support</span>
-                        </a>
+                        </a> */}
                         <div className="btn-list">
                             <div className="float-end form-check form-switch">
                                 <input
@@ -119,31 +127,33 @@ function ProfileMain() {
                 <section>
                     <h5 className="title-section pb-2">Personal</h5>
                     <nav className="nav-list">
-                        <a
-                            className="btn-list"
-                            href="29.page-profile-edit.html"
-                        >
-                            <i className="icon-control material-icons md-edit"></i>
-                            <small className="title">Username</small>
-                            <span className="text">@vosidiy</span>
-                        </a>
-                        <a
-                            className="btn-list"
-                            href="29.page-profile-edit.html"
-                        >
-                            <i className="icon-control material-icons md-edit"></i>
-                            <small className="title">Email</small>
-                            <span className="text">myname@gmail.com</span>
-                        </a>
+                        <Link href={"/profile-edit"}>
+                            <a className="btn-list">
+                                <i className="icon-control material-icons md-edit"></i>
+                                <small className="title">Username</small>
+                                <span className="text">
+                                    {session?.user?.name ?? "Username"}
+                                </span>
+                            </a>
+                        </Link>
+                        <Link href={"/profile-edit"}>
+                            <a className="btn-list">
+                                <i className="icon-control material-icons md-edit"></i>
+                                <small className="title">Email</small>
+                                <span className="text">
+                                    {session?.user?.email ?? "Email"}
+                                </span>
+                            </a>
+                        </Link>
                     </nav>
                 </section>
 
-                <p className="text-center my-3">
+                {/* <p className="text-center my-3">
                     <a href="index.html" className="btn btn-light">
                         <i className="material-icons md-arrow_back"></i> Back to
                         all pages
                     </a>
-                </p>
+                </p> */}
             </main>
         </>
     );
