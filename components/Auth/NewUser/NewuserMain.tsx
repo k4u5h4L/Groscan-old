@@ -78,7 +78,7 @@ function NewUserMain() {
                         <div className="icontext">
                             <div className="icon">
                                 <img
-                                    src="/images/avatars/1.jpg"
+                                    src={"/images/user-profile.svg"}
                                     className="avatar-lg"
                                     alt=""
                                     width={80}
@@ -120,6 +120,7 @@ function NewUserMain() {
                                 placeholder="Phone"
                                 required={true}
                                 ref={phoneRef}
+                                pattern="^[+][0-9]{12}"
                             />
                         </div>
                         {/* <div className="mb-3">

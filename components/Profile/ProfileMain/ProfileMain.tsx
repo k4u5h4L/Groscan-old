@@ -8,9 +8,11 @@ function ProfileMain() {
         <>
             <main className="app-content">
                 <section className="p-3 bg-primary">
-                    <a href="28.page-settings.html" className="float-end">
-                        <i className="material-icons md-edit text-white"></i>
-                    </a>
+                    <Link href={"/profile-edit"}>
+                        <a className="float-end">
+                            <i className="material-icons md-edit text-white"></i>
+                        </a>
+                    </Link>
                     <figure
                         className="icontext align-items-center mr-4"
                         style={{ maxWidth: "300px" }}
