@@ -1,7 +1,7 @@
 <h1 align="center">Groscan</h1></br>
 
 <p align="center">
-:plate_with_cutlery:  A JAM stack PWA, grocery management hybrid app built with Capacitorjs, React, TypeScript, Next.js, Prisma and MongoDB. :cocktail:
+:leafy_green:  A JAM stack PWA, grocery management hybrid app built with Capacitorjs, React, TypeScript, Next.js, Prisma and MongoDB. :shopping_cart:
 </p>
 <br>
 
@@ -15,15 +15,15 @@
 </p>
 
 <br>
-<!-- <p align="center">
-<img width="460px" src="assets/logo.png" alt="amma's recipe"></img>
-</p><br> -->
+<p align="center">
+<img width="460px" src="assets/logo.png" alt="Groscan"></img>
+</p><br>
 
 ## Technologies used:
 
 -   React as the UI library.
 
--   Next.js as the React framework SSG and ISR.
+-   Next.js as the React framework for extra features and API backend.
 
 -   REST as the API language.
 
@@ -31,7 +31,9 @@
 
 -   Prisma as the ODM.
 
--   NextAuth as the authentication backend with passwordless logins.
+-   NextAuth as the authentication backend with OTP logins.
+
+-   Capacitor.js as the hybrid app framework to run the platform on Android and iOS.
 
 ## Prerequisites:
 
