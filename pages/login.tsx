@@ -5,7 +5,7 @@ import Sidebar from "@/components/Common/Sidebar/Sidebar";
 export default function Login() {
     return (
         <>
-            <Header />
+            <Header title="Groscan" />
             <LoginMain />
             <Sidebar />
         </>

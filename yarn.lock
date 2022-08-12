@@ -67,6 +67,11 @@
   resolved "https://registry.yarnpkg.com/@capacitor/local-notifications/-/local-notifications-4.0.1.tgz#a847e7740f19795e42c80269af5a863a8e89d43a"
   integrity sha512-7OX8k1HUKLo5W8LnkHi0Pesshdn2oGbgcw/1cUd37u9hG5S1Y9a0dNjnlYi9BGfV03Bpjxr5P6q1BhKDCwb3wg==
 
+"@capacitor/preferences@^4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@capacitor/preferences/-/preferences-4.0.1.tgz#fd56f24fe2cde1222cf5c3057d52cd55fd033e7b"
+  integrity sha512-FffJjKS4XcodUj/rtFtWizQ9q/oYDSn5opZ+JYwj/EkjiMWMhY/Pk9lN3vwQfp+VJrTt3hjr+bwKXjhTbYBqKw==
+
 "@capacitor/toast@^4.0.1":
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/@capacitor/toast/-/toast-4.0.1.tgz#4d65e74c39a946bbab5c8a1e129fd136d9e3191f"

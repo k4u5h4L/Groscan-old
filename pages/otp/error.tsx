@@ -10,7 +10,7 @@ function OtpError() {
 
     return (
         <>
-            <Header />
+            <Header title="Groscan" />
             <main className="app-content">
                 <hr className="divider" />
 
