@@ -46,6 +46,9 @@ function ProfileEditMain() {
                 username: usernameRef.current.value,
                 phone: phoneRef.current.value,
                 email: emailRef.current.value,
+                imageUrl: session.user.image,
+                oldUsername: session.user.name,
+                oldEmail: session.user.email,
             })
         );
 
@@ -123,6 +126,7 @@ function ProfileEditMain() {
                                 className="form-control"
                                 pattern="^[+][0-9]{12}"
                                 placeholder={"phone"}
+                                required={true}
                                 ref={phoneRef}
                             />
                         </div>

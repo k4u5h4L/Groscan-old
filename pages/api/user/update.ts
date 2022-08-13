@@ -4,6 +4,8 @@ import { IncomingForm } from "formidable";
 import os from "os";
 import checkAuth from "@/middlewares/auth";
 import prisma from "@/prisma/client";
+import { UploadApiResponse } from "cloudinary";
+import { User } from "@prisma/client";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     const session = await checkAuth(req);
@@ -35,27 +37,46 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 });
             }
 
-            console.log("file path: ", files.file.filepath);
+            const { username, phone, email, imageUrl, oldUsername, oldEmail } =
+                JSON.parse(`${fields.fields}`);
 
-            const { username, phone, email } = JSON.parse(`${fields.fields}`);
+            let image: UploadApiResponse;
 
-            const image = await uploadImage(files.file.filepath);
+            if (!imageUrl) {
+                console.log("file path: ", files.file.filepath);
+                image = await uploadImage(files.file.filepath);
+                console.log(
+                    `Image uploaded for email ${session.user.email}, ${image.secure_url}`
+                );
+            }
 
-            console.log(
-                `Image uploaded for email ${session.user.email}, ${image.secure_url}`
-            );
+            let updateUser: User;
 
-            const updateUser = await prisma.user.update({
-                where: {
-                    email: session.user.email,
-                },
-                data: {
-                    name: username,
-                    phone: phone,
-                    image: image.secure_url,
-                    email: email,
-                },
-            });
+            if (!imageUrl) {
+                updateUser = await prisma.user.update({
+                    where: {
+                        email: session.user.email,
+                    },
+                    data: {
+                        name: username,
+                        phone: phone,
+                        image: image?.secure_url,
+                        email: email,
+                    },
+                });
+            } else {
+                updateUser = await prisma.user.update({
+                    where: {
+                        email: session.user.email,
+                    },
+                    data: {
+                        name: username ?? oldUsername,
+                        phone: phone ?? "**********",
+                        email: email ?? oldEmail,
+                        image: imageUrl ?? "/images/user-profile.svg",
+                    },
+                });
+            }
 
             console.log(`Updated user data: `, updateUser);
 
