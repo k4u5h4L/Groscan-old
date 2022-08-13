@@ -1,4 +1,4 @@
-function ItemsFilters() {
+function ItemsFilters({ items, setItems }) {
     return (
         <>
             <aside

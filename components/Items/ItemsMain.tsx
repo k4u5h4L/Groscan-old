@@ -1,4 +1,7 @@
-function ItemsMain() {
+import Link from "next/link";
+
+function ItemsMain({ items, setItems }) {
+    const it = [1, 2, 3, 4, 5, 6];
     return (
         <>
             <main className="app-content">
@@ -28,400 +31,69 @@ function ItemsMain() {
                 <section>
                     <div className="p-3">
                         <ul className="row">
-                            <li className="col-12 col-sm-12 col-md-6">
-                                <article className="product-list mb-2">
-                                    <a href="#" className="img-wrap">
-                                        <img src="/images/items/1.jpg" />
-                                    </a>
-                                    <div className="info-wrap">
-                                        <a href="#" className="float-end">
-                                            <i className="material-icons md-favorite_border"></i>
+                            {it.map((i, index) => (
+                                <li
+                                    className="col-12 col-sm-12 col-md-6"
+                                    key={index}
+                                >
+                                    <article className="product-list mb-2">
+                                        <a href="#" className="img-wrap">
+                                            <img
+                                                src={`/images/items/${i}.jpg`}
+                                            />
                                         </a>
+                                        <div className="info-wrap">
+                                            <a href="#" className="float-end">
+                                                <i className="material-icons md-favorite_border"></i>
+                                            </a>
 
-                                        <p className="title">
-                                            Great product name
-                                        </p>
+                                            <p className="title">
+                                                Great product name
+                                            </p>
 
-                                        <div className="rating-wrap">
-                                            <ul className="rating-stars">
-                                                <li
-                                                    style={{ width: "100%" }}
-                                                    className="stars-active"
-                                                >
-                                                    <img
-                                                        src="/images/misc/stars-active.svg"
-                                                        height="16"
-                                                        alt="stars"
-                                                    />
-                                                </li>
-                                                <li>
-                                                    <img
-                                                        src="/images/misc/stars-disable.svg"
-                                                        height="16"
-                                                        alt="stars"
-                                                    />
-                                                </li>
-                                            </ul>
-                                            <small className="label-rating text-muted">
-                                                9/10
-                                            </small>
+                                            <div className="rating-wrap">
+                                                <ul className="rating-stars">
+                                                    <li
+                                                        style={{
+                                                            width: "100%",
+                                                        }}
+                                                        className="stars-active"
+                                                    >
+                                                        <img
+                                                            src="/images/misc/stars-active.svg"
+                                                            height="16"
+                                                            alt="stars"
+                                                        />
+                                                    </li>
+                                                    <li>
+                                                        <img
+                                                            src="/images/misc/stars-disable.svg"
+                                                            height="16"
+                                                            alt="stars"
+                                                        />
+                                                    </li>
+                                                </ul>
+                                                <small className="label-rating text-muted">
+                                                    9/10
+                                                </small>
+                                            </div>
+
+                                            <div className="price">$99.50</div>
                                         </div>
-
-                                        <div className="price">$99.50</div>
-                                    </div>
-                                </article>
-                            </li>
-
-                            <li className="col-12 col-sm-12 col-md-6">
-                                <article className="product-list mb-2">
-                                    <a href="#" className="img-wrap">
-                                        <img src="/images/items/2.jpg" />
-                                    </a>
-                                    <div className="info-wrap">
-                                        <a href="#" className="float-end">
-                                            <i className="material-icons md-favorite_border"></i>
-                                        </a>
-
-                                        <p className="title">
-                                            Product name goes here
-                                        </p>
-
-                                        <div className="rating-wrap">
-                                            <ul className="rating-stars">
-                                                <li
-                                                    style={{ width: "80%" }}
-                                                    className="stars-active"
-                                                >
-                                                    <img
-                                                        src="/images/misc/stars-active.svg"
-                                                        height="16"
-                                                        alt="stars"
-                                                    />
-                                                </li>
-                                                <li>
-                                                    <img
-                                                        src="/images/misc/stars-disable.svg"
-                                                        height="16"
-                                                        alt="stars"
-                                                    />
-                                                </li>
-                                            </ul>
-                                            <small className="label-rating text-muted">
-                                                9/10
-                                            </small>
-                                        </div>
-
-                                        <div className="price">$72.50</div>
-                                    </div>
-                                </article>
-                            </li>
-
-                            <li className="col-12 col-sm-12 col-md-6">
-                                <article className="product-list mb-2">
-                                    <a href="#" className="img-wrap">
-                                        <img src="/images/items/3.jpg" />
-                                    </a>
-                                    <div className="info-wrap">
-                                        <a href="#" className="float-end">
-                                            <i className="material-icons md-favorite_border"></i>
-                                        </a>
-
-                                        <p className="title">
-                                            Smartwatch Apple 32GB
-                                        </p>
-
-                                        <div className="rating-wrap">
-                                            <ul className="rating-stars">
-                                                <li
-                                                    style={{ width: "60%" }}
-                                                    className="stars-active"
-                                                >
-                                                    <img
-                                                        src="/images/misc/stars-active.svg"
-                                                        height="16"
-                                                        alt="stars"
-                                                    />
-                                                </li>
-                                                <li>
-                                                    <img
-                                                        src="/images/misc/stars-disable.svg"
-                                                        height="16"
-                                                        alt="stars"
-                                                    />
-                                                </li>
-                                            </ul>
-                                            <small className="label-rating text-muted">
-                                                9/10
-                                            </small>
-                                        </div>
-
-                                        <div className="price">$9.95</div>
-                                    </div>
-                                </article>
-                            </li>
-
-                            <li className="col-12 col-sm-12 col-md-6">
-                                <article className="product-list mb-2">
-                                    <a href="#" className="img-wrap">
-                                        <img src="/images/items/4.jpg" />
-                                    </a>
-                                    <div className="info-wrap">
-                                        <a href="#" className="float-end">
-                                            <i className="material-icons md-favorite_border"></i>
-                                        </a>
-
-                                        <p className="title">
-                                            Gaming Headset Black
-                                        </p>
-
-                                        <div className="rating-wrap">
-                                            <ul className="rating-stars">
-                                                <li
-                                                    style={{ width: "20%" }}
-                                                    className="stars-active"
-                                                >
-                                                    <img
-                                                        src="/images/misc/stars-active.svg"
-                                                        height="16"
-                                                        alt="stars"
-                                                    />
-                                                </li>
-                                                <li>
-                                                    <img
-                                                        src="/images/misc/stars-disable.svg"
-                                                        height="16"
-                                                        alt="stars"
-                                                    />
-                                                </li>
-                                            </ul>
-                                            <small className="label-rating text-muted">
-                                                9/10
-                                            </small>
-                                        </div>
-
-                                        <div className="price">$23.00</div>
-                                    </div>
-                                </article>
-                            </li>
-
-                            <li className="col-12 col-sm-12 col-md-6">
-                                <article className="product-list mb-2">
-                                    <a href="#" className="img-wrap">
-                                        <img src="/images/items/5.jpg" />
-                                    </a>
-                                    <div className="info-wrap">
-                                        <a href="#" className="float-end">
-                                            <i className="material-icons md-favorite_border"></i>
-                                        </a>
-                                        <p className="title">
-                                            Great product name
-                                        </p>
-                                        <div className="rating-wrap">
-                                            <ul className="rating-stars">
-                                                <li
-                                                    style={{ width: "80%" }}
-                                                    className="stars-active"
-                                                >
-                                                    <img
-                                                        src="/images/misc/stars-active.svg"
-                                                        height="16"
-                                                        alt="stars"
-                                                    />
-                                                </li>
-                                                <li>
-                                                    <img
-                                                        src="/images/misc/stars-disable.svg"
-                                                        height="16"
-                                                        alt="stars"
-                                                    />
-                                                </li>
-                                            </ul>
-                                            <small className="label-rating text-muted">
-                                                9/10
-                                            </small>
-                                        </div>
-
-                                        <div className="price">$23.00</div>
-                                    </div>
-                                </article>
-                            </li>
-
-                            <li className="col-12 col-sm-12 col-md-6">
-                                <article className="product-list mb-2">
-                                    <a href="#" className="img-wrap">
-                                        <img src="/images/items/6.jpg" />
-                                    </a>
-                                    <div className="info-wrap">
-                                        <a href="#" className="float-end">
-                                            <i className="material-icons md-favorite_border"></i>
-                                        </a>
-                                        <p className="title">
-                                            Great product name
-                                        </p>
-                                        <div className="rating-wrap">
-                                            <ul className="rating-stars">
-                                                <li
-                                                    style={{ width: "80%" }}
-                                                    className="stars-active"
-                                                >
-                                                    <img
-                                                        src="/images/misc/stars-active.svg"
-                                                        height="16"
-                                                        alt="stars"
-                                                    />
-                                                </li>
-                                                <li>
-                                                    <img
-                                                        src="/images/misc/stars-disable.svg"
-                                                        height="16"
-                                                        alt="stars"
-                                                    />
-                                                </li>
-                                            </ul>
-                                            <small className="label-rating text-muted">
-                                                9/10
-                                            </small>
-                                        </div>
-
-                                        <div className="price">$23.00</div>
-                                    </div>
-                                </article>
-                            </li>
-
-                            <li className="col-12 col-sm-12 col-md-6">
-                                <article className="product-list mb-2">
-                                    <a href="#" className="img-wrap">
-                                        <img src="/images/items/7.jpg" />
-                                    </a>
-                                    <div className="info-wrap">
-                                        <a href="#" className="float-end">
-                                            <i className="material-icons md-favorite_border"></i>
-                                        </a>
-                                        <p className="title">
-                                            Great product name
-                                        </p>
-                                        <div className="rating-wrap">
-                                            <ul className="rating-stars">
-                                                <li
-                                                    style={{ width: "80%" }}
-                                                    className="stars-active"
-                                                >
-                                                    <img
-                                                        src="/images/misc/stars-active.svg"
-                                                        height="16"
-                                                        alt="stars"
-                                                    />
-                                                </li>
-                                                <li>
-                                                    <img
-                                                        src="/images/misc/stars-disable.svg"
-                                                        height="16"
-                                                        alt="stars"
-                                                    />
-                                                </li>
-                                            </ul>
-                                            <small className="label-rating text-muted">
-                                                9/10
-                                            </small>
-                                        </div>
-
-                                        <div className="price">$23.00</div>
-                                    </div>
-                                </article>
-                            </li>
-
-                            <li className="col-12 col-sm-12 col-md-6">
-                                <article className="product-list mb-2">
-                                    <a href="#" className="img-wrap">
-                                        <img src="/images/items/6.jpg" />
-                                    </a>
-                                    <div className="info-wrap">
-                                        <a href="#" className="float-end">
-                                            <i className="material-icons md-favorite_border"></i>
-                                        </a>
-                                        <p className="title">
-                                            Backpack for Travel
-                                        </p>
-                                        <div className="rating-wrap">
-                                            <ul className="rating-stars">
-                                                <li
-                                                    style={{ width: "80%" }}
-                                                    className="stars-active"
-                                                >
-                                                    <img
-                                                        src="/images/misc/stars-active.svg"
-                                                        height="16"
-                                                        alt="stars"
-                                                    />
-                                                </li>
-                                                <li>
-                                                    <img
-                                                        src="/images/misc/stars-disable.svg"
-                                                        height="16"
-                                                        alt="stars"
-                                                    />
-                                                </li>
-                                            </ul>
-                                            <small className="label-rating text-muted">
-                                                9/10
-                                            </small>
-                                        </div>
-
-                                        <div className="price">$13.00</div>
-                                    </div>
-                                </article>
-                            </li>
-
-                            <li className="col-12 col-sm-12 col-md-6">
-                                <article className="product-list mb-2">
-                                    <a href="#" className="img-wrap">
-                                        <img src="/images/items/item.jpg" />
-                                    </a>
-                                    <div className="info-wrap">
-                                        <a href="#" className="float-end">
-                                            <i className="material-icons md-favorite_border"></i>
-                                        </a>
-                                        <p className="title">
-                                            Great product name
-                                        </p>
-                                        <div className="rating-wrap">
-                                            <ul className="rating-stars">
-                                                <li
-                                                    style={{ width: "80%" }}
-                                                    className="stars-active"
-                                                >
-                                                    <img
-                                                        src="/images/misc/stars-active.svg"
-                                                        height="16"
-                                                        alt="stars"
-                                                    />
-                                                </li>
-                                                <li>
-                                                    <img
-                                                        src="/images/misc/stars-disable.svg"
-                                                        height="16"
-                                                        alt="stars"
-                                                    />
-                                                </li>
-                                            </ul>
-                                            <small className="label-rating text-muted">
-                                                9/10
-                                            </small>
-                                        </div>
-
-                                        <div className="price">$23.00</div>
-                                    </div>
-                                </article>
-                            </li>
+                                    </article>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 </section>
 
                 <p className="text-center mx-3">
-                    <a href="index.html" className="btn w-100 btn-light">
-                        <i className="material-icons md-arrow_back"></i> More
-                        pages
-                    </a>
+                    <Link href={"/add"}>
+                        <a className="btn w-100 btn-light">
+                            Add an item
+                            <i className="material-icons md-arrow_forward"></i>
+                        </a>
+                    </Link>
                 </p>
                 <br />
             </main>
