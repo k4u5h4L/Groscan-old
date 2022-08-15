@@ -2,13 +2,21 @@ import Link from "next/link";
 
 function ItemsMain({ items, setItems }) {
     const it = [1, 2, 3, 4, 5, 6];
+
+    const onSortChangeHandler = (e: any) => {
+        console.log(e.target.label);
+    };
+
     return (
         <>
             <main className="app-content">
                 <section className="px-3 pt-1 pb-3 bg-primary">
                     <form className="row">
                         <div className="col-6">
-                            <select className="form-select form-select-sm bg-primary-light text-white border-0">
+                            <select
+                                className="form-select form-select-sm bg-primary-light text-white border-0"
+                                onClick={onSortChangeHandler}
+                            >
                                 <option>Sort by</option>
                                 <option>Price</option>
                                 <option>Name</option>

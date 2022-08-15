@@ -9,7 +9,7 @@ import "@/styles/scanner.css";
 // import Navbar from "@/components/Common/Navbar/Navbar";
 import { useRouter } from "next/router";
 import { AnimatePresence, domAnimation, LazyMotion, m } from "framer-motion";
-import "normalize.css";
+// import "normalize.css";
 import {
     slideUp,
     slideLeft,

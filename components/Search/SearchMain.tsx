@@ -58,6 +58,7 @@ function SearchMain({ history }: PropType) {
                             type="text"
                             placeholder="Search"
                             className="form-control input-dark"
+                            required={true}
                             style={{ color: focus ? "black" : "white" }}
                             ref={searchRef}
                             onFocus={onFocusHandler}
