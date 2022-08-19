@@ -1,60 +1,93 @@
-import {
-    BarcodeScanner,
-    CheckPermissionResult,
-    ScanResult,
-} from "@capacitor-community/barcode-scanner";
-import { Toast } from "@capacitor/toast";
+import Quagga from "quagga";
 import { useEffect } from "react";
 
 export default function Scanner() {
-    const showToast = async (message: string) => {
-        await Toast.show({
-            text: message,
-        });
-    };
-
-    const startScan = async () => {
-        const status: CheckPermissionResult =
-            await BarcodeScanner.checkPermission({ force: true });
-
-        if (status) {
-            await BarcodeScanner.hideBackground(); // make background of WebView transparent
-
-            // start scanning and wait for a result
-            const result: ScanResult = await BarcodeScanner.startScan();
-
-            // if the result has content
-            if (result.hasContent) {
-                // alert(result.content); // log the raw scanned content
-                await showToast(`Barcode ID is ${result.content}`);
-            }
-
-            await BarcodeScanner.stopScan();
-            await BarcodeScanner.showBackground();
-        }
-    };
-
     useEffect(() => {
-        startScan();
-    });
+        Quagga.init(
+            {
+                inputStream: {
+                    type: "LiveStream",
+                    constraints: {
+                        width: 640,
+                        height: 320,
+                        facingMode: "environment",
+                    },
+                    area: {
+                        // defines rectangle of the detection/localization area
+                        top: "10%", // top offset
+                        right: "10%", // right offset
+                        left: "10%", // left offset
+                        bottom: "10%", // bottom offset
+                    },
+                },
+                locator: {
+                    halfSample: true,
+                    patchSize: "large", // x-small, small, medium, large, x-large
+                    debug: {
+                        showCanvas: true,
+                        showPatches: false,
+                        showFoundPatches: false,
+                        showSkeleton: true,
+                        showLabels: false,
+                        showPatchLabels: false,
+                        showRemainingPatchLabels: false,
+                        boxFromPatches: {
+                            showTransformed: true,
+                            showTransformedBox: true,
+                            showBB: true,
+                        },
+                    },
+                },
+                numOfWorkers: 4,
+                decoder: {
+                    readers: [
+                        "code_128_reader",
+                        "ean_reader",
+                        "ean_8_reader",
+                        "code_39_reader",
+                        "code_39_vin_reader",
+                        "codabar_reader",
+                        "upc_reader",
+                        "upc_e_reader",
+                        "i2of5_reader",
+                        "2of5_reader",
+                        "code_93_reader",
+                    ],
+                    debug: {
+                        drawBoundingBox: true,
+                        showFrequency: true,
+                        drawScanline: true,
+                        showPattern: true,
+                    },
+                },
+                locate: true,
+            },
+            function (err) {
+                if (err) {
+                    return console.log(err);
+                }
+                Quagga.start();
+            }
+        );
+
+        Quagga.onDetected((item) => {
+            console.log(item.codeResult.code);
+
+            Quagga.stop();
+        });
+
+        return () => {
+            Quagga.offDetected((item) => {
+                // console.log(item);
+
+                Quagga.stop();
+            });
+        };
+    }, []);
 
     return (
         <>
-            <div className="sample-background">
-                {/* Scanner will come here */}
-            </div>
-            <div className="container">
-                <div className="barcode-scanner--area--container">
-                    <div className="relative">
-                        <p>Aim your camera at a barcode</p>
-                    </div>
-                    <div className="square surround-cover">
-                        <div className="barcode-scanner--area--outer surround-cover">
-                            <div className="barcode-scanner--area--inner"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div id="interactive" className="viewport" />
         </>
     );
 }
