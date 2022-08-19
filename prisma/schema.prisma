@@ -44,8 +44,12 @@ model User {
   emailVerified DateTime?
   image         String?
   phone         String?
-  accounts      Account[]
-  sessions      Session[]
+
+  updatedAt DateTime @default(now())
+
+  accounts  Account[]
+  sessions  Session[]
+  groceries Grocery[]
 }
 
 model VerificationToken {
@@ -55,4 +59,40 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Grocery {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  barcode      String   @unique
+  name         String
+  desc         String?
+  status       Status   @default(UPCOMING)
+  userId       String
+  image        String
+  manufactured DateTime @default(now())
+  expiry       DateTime
+
+  updatedAt DateTime @default(now())
+
+  categoryIDs String[]   @db.ObjectId
+  categories  Category[] @relation(fields: [categoryIDs], references: [id])
+  user        User       @relation(fields: [userId], references: [id])
+}
+
+model Category {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  desc       String?
+  icon       String
+  groceryIDs String[] @db.ObjectId
+
+  updatedAt DateTime @default(now())
+
+  groceries Grocery[] @relation(fields: [groceryIDs], references: [id])
+}
+
+enum Status {
+  UPCOMING
+  EXPIRED
+  CONSUMED
 }
