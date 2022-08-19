@@ -8,4 +8,10 @@ const forceLower = (strInput) => {
     strInput.value = strInput.value.toLowerCase();
 };
 
-export { getUrl, forceLower };
+const checkMongoID = (id: string): boolean => {
+    const regex = new RegExp("^[0-9a-fA-F]{24}$");
+
+    return regex.test(id);
+};
+
+export { getUrl, forceLower, checkMongoID };

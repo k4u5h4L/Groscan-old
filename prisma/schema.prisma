@@ -45,11 +45,10 @@ model User {
   image         String?
   phone         String?
 
-  updatedAt DateTime @default(now())
-
-  accounts  Account[]
-  sessions  Session[]
-  groceries Grocery[]
+  accounts   Account[]
+  sessions   Session[]
+  groceries  Grocery[]
+  categories Category[]
 }
 
 model VerificationToken {
@@ -63,7 +62,7 @@ model VerificationToken {
 
 model Grocery {
   id           String   @id @default(auto()) @map("_id") @db.ObjectId
-  barcode      String   @unique
+  barcode      String
   name         String
   desc         String?
   status       Status   @default(UPCOMING)
@@ -84,11 +83,13 @@ model Category {
   name       String
   desc       String?
   icon       String
+  userId     String
   groceryIDs String[] @db.ObjectId
 
   updatedAt DateTime @default(now())
 
   groceries Grocery[] @relation(fields: [groceryIDs], references: [id])
+  user      User      @relation(fields: [userId], references: [id])
 }
 
 enum Status {

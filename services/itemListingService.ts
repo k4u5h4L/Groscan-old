@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { Session } from "next-auth";
 
-export default function listing(
+export default async function itemListingService(
     req: NextApiRequest,
     res: NextApiResponse,
     session: Session
