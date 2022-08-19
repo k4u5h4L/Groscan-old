@@ -1,8 +1,8 @@
+import { Grocery } from "@prisma/client";
 import Link from "next/link";
+import { useState } from "react";
 
 function ItemsMain({ items, setItems }) {
-    const it = [1, 2, 3, 4, 5, 6];
-
     const onSortChangeHandler = (e: any) => {
         console.log(e.target.label);
     };
@@ -39,29 +39,33 @@ function ItemsMain({ items, setItems }) {
                 <section>
                     <div className="p-3">
                         <ul className="row">
-                            {it.map((i, index) => (
+                            {items.map((item: Grocery, index: number) => (
                                 <li
                                     className="col-12 col-sm-12 col-md-6"
                                     key={index}
                                 >
                                     <article className="product-list mb-2">
-                                        <a href="#" className="img-wrap">
-                                            <img
-                                                src={`/images/items/${i}.jpg`}
-                                            />
-                                        </a>
-                                        <div className="info-wrap">
-                                            <a href="#" className="float-end">
-                                                <i className="material-icons md-favorite_border"></i>
+                                        <Link href={`/item/${item.id}`}>
+                                            <a className="img-wrap">
+                                                <img
+                                                    src={item.image}
+                                                    width={118}
+                                                    height={118}
+                                                />
                                             </a>
+                                        </Link>
+                                        <div className="info-wrap">
+                                            <Link href={`/item/${item.id}`}>
+                                                <a className="float-end">
+                                                    <i className="material-icons md-favorite_border"></i>
+                                                </a>
+                                            </Link>
 
-                                            <p className="title">
-                                                Great product name
-                                            </p>
+                                            <p className="title">{item.name}</p>
 
                                             <div className="rating-wrap">
                                                 <ul className="rating-stars">
-                                                    <li
+                                                    {/* <li
                                                         style={{
                                                             width: "100%",
                                                         }}
@@ -72,21 +76,28 @@ function ItemsMain({ items, setItems }) {
                                                             height="16"
                                                             alt="stars"
                                                         />
-                                                    </li>
-                                                    <li>
+                                                    </li> */}
+                                                    {/* <li>
                                                         <img
                                                             src="/images/misc/stars-disable.svg"
                                                             height="16"
                                                             alt="stars"
                                                         />
-                                                    </li>
+                                                    </li> */}
                                                 </ul>
                                                 <small className="label-rating text-muted">
-                                                    9/10
+                                                    {item.status}
                                                 </small>
                                             </div>
 
-                                            <div className="price">$99.50</div>
+                                            <div className="price">
+                                                Expiry:{" "}
+                                                <b>
+                                                    {new Date(
+                                                        item.expiry
+                                                    ).toDateString()}
+                                                </b>
+                                            </div>
                                         </div>
                                     </article>
                                 </li>
