@@ -1,3 +1,5 @@
+import { Category } from "@prisma/client";
+
 const getUrl = (location: string) => {
     const l = document.createElement("a");
     l.href = location;
@@ -14,4 +16,17 @@ const checkMongoID = (id: string): boolean => {
     return regex.test(id);
 };
 
-export { getUrl, forceLower, checkMongoID };
+const getNumberOfCategories = (
+    categories: Category[],
+    name: string
+): number => {
+    return categories.reduce(
+        (prev, cur) =>
+            cur.name.toLowerCase().includes(name.toLowerCase())
+                ? prev + 1
+                : prev,
+        0
+    );
+};
+
+export { getUrl, forceLower, checkMongoID, getNumberOfCategories };

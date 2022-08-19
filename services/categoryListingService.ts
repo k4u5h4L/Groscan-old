@@ -26,6 +26,7 @@ export default async function categoryListingService(
                         name: true,
                     },
                 },
+                groceryIDs: true,
                 id: true,
                 name: true,
                 icon: true,
