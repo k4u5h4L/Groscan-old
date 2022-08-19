@@ -45,6 +45,10 @@ function MyApp({ Component, pageProps }: AppProps) {
                 />
                 <meta name="”theme-color”" content="”#0d6efd" />
                 <meta name="apple-mobile-web-app-capable" content="yes" />
+                <meta
+                    name="viewport"
+                    content="initial-scale=1, viewport-fit=cover, user-scalable=no"
+                />
                 <title>Groscan</title>
                 <link rel="manifest" href="/site.webmanifest" />
 
