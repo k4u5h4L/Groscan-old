@@ -15,7 +15,7 @@ export default async function itemListingService(
                 email: session.user.email,
             },
         });
-        const categories = await prisma.grocery.findMany({
+        const items = await prisma.grocery.findMany({
             where: {
                 userId: user.id,
             },
@@ -32,10 +32,10 @@ export default async function itemListingService(
         });
 
         console.log(
-            `Found ${categories.length} groceries for user ${session.user.email}`
+            `Found ${items.length} groceries for user ${session.user.email}`
         );
 
-        res.status(200).json(categories);
+        res.status(200).json(items);
     } catch (err) {
         console.error(err);
 
