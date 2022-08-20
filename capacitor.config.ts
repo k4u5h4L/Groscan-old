@@ -11,8 +11,15 @@ const config: CapacitorConfig = {
     webDir: "out",
     bundledWebRuntime: false,
     // server: {
-    //     url: `http://192.168.1.254:3000`,
+    //     url: `http://192.168.1.3:3000`,
     // },
+    plugins: {
+        LocalNotifications: {
+            //   smallIcon: "ic_stat_icon_config_sample",
+            iconColor: "#0d6efd",
+            //   sound: "beep.wav",
+        },
+    },
 };
 
 export default config;
