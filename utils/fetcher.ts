@@ -1,4 +1,5 @@
 const fetcher = async (url: string): Promise<any> => {
+    url = `${process.env.NEXT_PUBLIC_SERVER_URL}${url}`;
     console.log(`Fetching data from url: ${url}`);
 
     try {

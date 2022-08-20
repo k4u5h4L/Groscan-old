@@ -10,9 +10,9 @@ const config: CapacitorConfig = {
     appName: "Groscan",
     webDir: "out",
     bundledWebRuntime: false,
-    // server: {
-    //     url: `http://192.168.1.3:3000`,
-    // },
+    server: {
+        url: `http://192.168.1.3:3000`,
+    },
     plugins: {
         LocalNotifications: {
             //   smallIcon: "ic_stat_icon_config_sample",
