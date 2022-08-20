@@ -1,3 +1,5 @@
+/// <reference types="@capacitor/local-notifications" />
+
 import { CapacitorConfig } from "@capacitor/cli";
 // import { internalIpV6Sync } from "internal-ip";
 
@@ -10,12 +12,12 @@ const config: CapacitorConfig = {
     appName: "Groscan",
     webDir: "out",
     bundledWebRuntime: false,
-    server: {
-        url: `http://192.168.1.3:3000`,
-    },
+    // server: {
+    //     url: `http://192.168.1.3:3000`,
+    // },
     plugins: {
         LocalNotifications: {
-            //   smallIcon: "ic_stat_icon_config_sample",
+            smallIcon: "ic_stat_notifications_active",
             iconColor: "#0d6efd",
             //   sound: "beep.wav",
         },
