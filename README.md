@@ -70,3 +70,7 @@ yarn dev
 -   This project is for learning purposes only, and not for commercial use.
 
 -   Any contribution is welcome. You may fork the repo and issue a PR.
+
+<!-- ## Theme:
+- #0d6efd
+-->

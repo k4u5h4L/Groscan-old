@@ -4,6 +4,7 @@ import { IncomingForm } from "formidable";
 import os from "os";
 import checkAuth from "@/middlewares/auth";
 import prisma from "@/prisma/client";
+import { UploadApiResponse } from "cloudinary";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     const session = await checkAuth(req);

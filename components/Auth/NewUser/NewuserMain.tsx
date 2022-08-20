@@ -7,7 +7,6 @@ function NewUserMain() {
     const { data: session, status } = useSession();
 
     const [image, setImage] = useState(null);
-    const [createObjectURL, setCreateObjectURL] = useState(null);
 
     const usernameRef = useRef<any>();
     const phoneRef = useRef<any>();
@@ -21,7 +20,6 @@ function NewUserMain() {
             const reader = new FileReader();
             reader.readAsDataURL(event.target.files[0]);
             reader.onload = () => {
-                setCreateObjectURL(URL.createObjectURL(i));
                 setImage(
                     new File(
                         [reader.result],
