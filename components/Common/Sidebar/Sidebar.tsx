@@ -1,8 +1,20 @@
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import { useEffect } from "react";
 
 function Sidebar() {
     const { data: session, status } = useSession();
+
+    useEffect(() => {
+        console.log("Sidebar mounted");
+
+        return () => {
+            if (typeof window != "undefined") {
+                document.body.setAttribute("style", "");
+                document.body.removeAttribute("data-bs-padding-right");
+            }
+        };
+    }, []);
 
     return (
         <>
