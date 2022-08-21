@@ -1,3 +1,5 @@
+/// <reference types="@capacitor/local-notifications" />
+
 import { CapacitorConfig } from "@capacitor/cli";
 // import { internalIpV6Sync } from "internal-ip";
 
@@ -15,9 +17,9 @@ const config: CapacitorConfig = {
     // },
     plugins: {
         LocalNotifications: {
-            //   smallIcon: "ic_stat_icon_config_sample",
+            smallIcon: "ic_stat_notifications_active",
             iconColor: "#0d6efd",
-            //   sound: "beep.wav",
+            sound: "groscan_notification",
         },
     },
 };

@@ -1,8 +1,44 @@
+import {
+    scheduleNotification,
+    schedulePeriodicNotification,
+    sendNotification,
+} from "@/utils/notificationUtils";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import { useEffect } from "react";
 
 function Sidebar() {
+    // useEffect(() => {
+    //     const currentDate = new Date();
+
+    //     if (typeof window != "undefined") {
+    //         LocalNotifications.schedule({
+    //             notifications: [
+    //                 {
+    //                     id: 1,
+    //                     title: "Test schedule",
+    //                     body: "Test body",
+    //                     schedule: {
+    //                         at: new Date(currentDate.getTime() + 2 * 60 * 100),
+    //                     },
+    //                 },
+    //             ],
+    //         });
+    //     }
+    // }, []);
+
     const { data: session, status } = useSession();
+
+    useEffect(() => {
+        console.log("Sidebar mounted");
+
+        return () => {
+            if (typeof window != "undefined") {
+                document.body.setAttribute("style", "");
+                document.body.removeAttribute("data-bs-padding-right");
+            }
+        };
+    }, []);
 
     return (
         <>
@@ -88,6 +124,43 @@ function Sidebar() {
                         <a onClick={() => signOut()}>
                             <i className="material-icons md-log_out"></i> Logout
                         </a>
+                        <button
+                            onClick={() =>
+                                sendNotification(1, "Test title", "Test body")
+                            }
+                        >
+                            Send Notif
+                        </button>
+                        <button
+                            onClick={() => {
+                                const currentDate = new Date();
+
+                                scheduleNotification(
+                                    2,
+                                    "Test schedule",
+                                    "Test body",
+                                    new Date(
+                                        currentDate.getTime() + 2 * 60 * 100
+                                    )
+                                );
+                            }}
+                        >
+                            Schedule Notif
+                        </button>
+                        <button
+                            onClick={() =>
+                                schedulePeriodicNotification(
+                                    3,
+                                    "Test Periodic schedule",
+                                    "Test body",
+                                    0,
+                                    2,
+                                    0
+                                )
+                            }
+                        >
+                            Schedule Periodic Notif
+                        </button>
                     </nav>
                 </article>
             </aside>
