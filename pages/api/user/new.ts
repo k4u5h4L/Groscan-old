@@ -34,34 +34,58 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 res.status(500).json({
                     error: `Something went wrong on our end!`,
                 });
-            }
 
-            console.log("file path: ", files.file.filepath);
+                return;
+            }
 
             const { username, phone } = JSON.parse(`${fields.fields}`);
 
-            const image = await uploadImage(files.file.filepath);
+            const p = files?.file?.filepath ?? "NONE";
 
-            console.log(
-                `Image uploaded for email ${session.user.email}, ${image.secure_url}`
-            );
+            if (p == "NONE") {
+                const updateUser = await prisma.user.update({
+                    where: {
+                        email: session.user.email,
+                    },
+                    data: {
+                        name: username,
+                        phone: phone,
+                    },
+                });
 
-            const updateUser = await prisma.user.update({
-                where: {
-                    email: session.user.email,
-                },
-                data: {
-                    name: username,
-                    phone: phone,
-                    image: image.secure_url,
-                },
-            });
+                console.log(`Updated user data: `, updateUser);
 
-            console.log(`Updated user data: `, updateUser);
+                res.status(200).json({
+                    message:
+                        "User successfully created and updated with new data.",
+                });
+            } else {
+                console.log("file path: ", files.file.filepath);
 
-            res.status(200).json({
-                message: "User successfully created and updated with new data.",
-            });
+                const image = await uploadImage(files.file.filepath);
+
+                console.log(
+                    `Image uploaded for email ${session.user.email}, ${image.secure_url}`
+                );
+
+                const updateUser = await prisma.user.update({
+                    where: {
+                        email: session.user.email,
+                    },
+                    data: {
+                        name: username,
+                        phone: phone,
+                        image: image.secure_url,
+                    },
+                });
+
+                console.log(`Updated user data: `, updateUser);
+
+                res.status(200).json({
+                    message:
+                        "User successfully created and updated with new data with new image.",
+                });
+            }
         });
     } else {
         // Handle any other HTTP method
