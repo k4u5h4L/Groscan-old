@@ -14,6 +14,8 @@ const fetcher = async (url: string): Promise<any> => {
     } catch (err) {
         console.error(err);
 
+        alert("Error fetching");
+
         return null;
     }
 };
