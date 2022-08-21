@@ -8,6 +8,8 @@ const fetcher = async (url: string): Promise<any> => {
         const res = await fetch(url);
         const data = await res.json();
 
+        console.log(`fetched data from ${url}:`, data);
+
         return data;
     } catch (err) {
         console.error(err);
